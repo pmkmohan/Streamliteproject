@@ -1,2 +1,2 @@
-import stemlit as st
+import streamlit as st
 st.write(" I learn Python with Narash IT")
