@@ -1,6 +1,7 @@
 
 import streamlit as st
 import pandas as pd
+import seaborn as sns 
 import matplotlib.pyplot as plt
 
 # Load Titanic dataset
@@ -84,42 +85,4 @@ insights = """
 - The majority of passengers are in Pclass 3.
 - Younger passengers tended to survive more often.
 """
-st.write(insights)
-# Importing all the necessary libraries.
-import streamlit as st
-import pandas as pd
-import seaborn as sns 
-import matplotlib.pyplot as plt
-
-# Load Titanic dataset
-@st.cache
-def load_data():
-    data = pd.read_csv(r'E:\NareshIT\Feb\21st - EDA_Explaratory Data Analysis\titanic dataset.csv')
-    return data
-
-data  = load_data()
-
-# Title and description
-st.title('Exploratory Data Analysis of Titanic Dataset')
-st.write('This is an EDA on the Titanic dataset.')
-st.write('First few rows of the dataset:')
-st.dataframe(data.head())
-
-# Data Cleaning Section
-st.subheader('Missing Values')
-missing_data = data.isnull().sum()
-st.write(missing_data)
-
-if st.checkbox('Fill missing Age with median'):
-    data['Age'].fillna(data['Age'].median(), inplace=True)
-
-if st.checkbox('Fill missing Embarked with mode'):
-    data['Embarked'].fillna(data['Embarked'].mode()[0], inplace=True)
-
-if st.checkbox('Drop duplicates'):
-    data.drop_duplicates(inplace=True)
-
-    st.subheader('Cleaned Dataset')
-    st.dataframe(data.head())
-    
 
